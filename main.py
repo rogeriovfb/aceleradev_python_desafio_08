@@ -99,71 +99,169 @@ types:
       last_login:
         type: date-only
         required: true
+        
+    Response:
+    properties:
+      message:
+        type: string
 
 
 /auth/token:
-  post:
-    body:
-      type: Auth
-    securedBy: [JWT]
-
+    post:
+      description: Return JWT
+      body:
+        application/json:
+          type: Auth
+          username: string
+          password: string
+      responses: 
+        201:
+          body: 
+            application/json:
+              description: Token gerado
+        400:
+          body: 
+            application/json:
+              description: Token expirado
+      securedBy: [JWT]
+      
 /agents:
   get:
-    responses:
+    responses: 
       200:
-        body: Agent
-
+        body:
+          type: Response
+      401:
+        body:
+          type: Response
+      404:
+        body:
+          type: Response
+    securedBy: [JWT]
   post:
-    body:
-      type: Agent
-    responses:
+    body: 
+      application/json:
+    responses: 
       201:
         body:
-          type: Agent
+          type: Response
+      401:
+        body:
+          type: Response
+    securedBy: [JWT]
 
   /{id}:
+    get:
+      responses: 
+        200:
+          body:
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
     put:
-      body:
-        type: Agent
       responses:
         200:
           body:
-            type: Agent
-
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
     delete:
       responses:
-        204:
+        200:
           body:
-
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
+      
   /{id}/events:
     get:
       responses:
         200:
           body:
-            type: Event
-
+            type: Event[]
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
+      
     post:
       body: 
-        type: Event
-      responses:
+        application/json:
         201:
           body:
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
+      
+    put:
+      description: Update Event
+      body:
+        type: Event
+        200:
+          body:
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      responses:
+        200:
+          body:
             type: Event
-
-
-/agents/{id}/events/{id}:
-  put:
-    body:
-      type: Event
-    responses:
-      200:
-        body:
-          type: Event
-
-  delete:
-    responses:
-      204:
-        body:
+        400:
+          body:
+            type: Response
+      securedBy: [JWT]
+      
+    delete:
+      description: Delete Event
+      body: 
+        application/json:
+        200:
+          body:
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      responses:
+        200:
+          body:
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
 
 /groups:
   get:
@@ -171,17 +269,35 @@ types:
       200:
         body:
           type: Group[]
-
+      401:
+        body:
+          type: Response
+    securedBy: [JWT]
+    
   post:
     body:
-      type: Group
+      application/json:
     responses:
       201:
         body:
           type: Group
-
-
+      401:
+        body:
+          type: Response
+    securedBy: [JWT]
   /{id}:
+    get:
+      responses:
+        200:
+          body:
+            type: Group[]
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
     put:
       body:
         type: Group
@@ -189,29 +305,54 @@ types:
         200:
           body:
             type: Group
-
+        401:
+          body:
+            type: Response
+      securedBy: [JWT]
     delete:
       responses:
         204:
           body:
-
+            type: Response
+        400:
+          body:
+            type: Response
+      securedBy: [JWT]
 /users:
   get:
     responses:
       200:
         body:
-          type: User
-
+          type: User[]
+    securedBy: [JWT]
   post:
     body:
-      type: User
+      application/json:
+        properties:
     responses:
       201:
         body:
           type: User
-
-
+      401:
+        body:
+          type: Response
+      404:
+        body:
+          type: Response
+    securedBy: [JWT]
   /{id}:
+    get:
+      responses:
+        200:
+          body:
+            type: User[]
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
     put:
       body:
         type: User
@@ -219,10 +360,23 @@ types:
         200:
           body:
             type: User
-    
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
     delete:
       responses:
-        204:
+        200:
           body:
-
+            type: Response
+        401:
+          body:
+            type: Response
+        404:
+          body:
+            type: Response
+      securedBy: [JWT]
 '''
