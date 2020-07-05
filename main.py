@@ -21,90 +21,130 @@ types:
     discriminator: token
     properties:
       token: string
-
+      
   Agent:
     type: object
+    discriminator: agent
     properties:
-      id:
-        type: integer
-        required: true
-      name:
-        type: string
-        required: true
-      status:
-        type: boolean
-        required: true
-      environment:
-        type: string
-        required: true
-      version:
-        type: string
-        required: true
-      address:
-        type: string
-        required: true
-      user_id:
-        type: integer
-        required: true
-
-
-  Group:
-    type: object
-    properties:
-      id:
-        type: integer
-        required: true
-      name:
-        type: string
-        required: true
- 
-
-  Event:
-    type: object
-    properties:
-      id:
-        type: integer
-        required: true
-      level:
-        type: string
-        required: true
-      payload:
-        type: string
-        required: true
-      shelve:
-        type: boolean
-        required: true
-      date:
-        type: datetime
-        required: true
       agent_id:
         type: integer
         required: true
+        example: 1
+      name:
+        type: string
+        required: true
+        example: "name example"
+      status:
+        type: boolean
+        required: true
+        example: true
+      environment:
+        type: string
+        required: true
+        example: "environment example"
+      version:
+        type: string
+        required: true
+        example: "version example"
+      address:
+        type: string
+        required: true
+        example: "address example"
+      user_id:
+        type: integer
+        required: true
+        example: 1
+    example:
+      agent_id: 1
+      user_id: 1
+      name: "name example"
+      status: true
+      environment: "environment example"
+      version: "version example"
+      address: "address example"
 
-  User:
+  Group:
     type: object
+    discriminator: group
     properties:
       id:
         type: integer
         required: true
+        example: 1
       name:
         type: string
         required: true
+        example: "name example"
+    example:
+      group_id: 1
+      name: "group example"
+ 
+  Event:
+    type: object
+    discriminator: event
+    properties:
+      id:
+        type: integer
+        required: true
+        example: 1
+      level:
+        type: string
+        required: true
+        example: 1
+      payload:
+        type: string
+        required: true
+        example: "payload example"
+      shelve:
+        type: boolean
+        required: true
+        example: true
+      date:
+        type: datetime
+        required: true
+        example: "2020-07-05T00:00:00Z"
+      agent_id:
+        type: integer
+        required: true
+        example: 1
+        
+    example:
+      event_id: 1
+      agent_id: 1
+      level: "level example"
+      data: "payload example"
+      shelve: true
+
+  User:
+    type: object
+    discriminator: user
+    properties:
+      id:
+        type: integer
+        required: true
+        example: 1
+      name:
+        type: string
+        required: true
+        example: "name example"
       password:
         type: string
         required: true
+        example: "password example"
       email:
         type: string
         required: true
+        example: "name@example.com"
       last_login:
         type: date-only
         required: true
+        example: "2020-07-05"
         
     Response:
     properties:
       message:
         type: string
-
+        example: "message example"
 
 /auth/token:
     post:
