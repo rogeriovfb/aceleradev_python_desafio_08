@@ -163,10 +163,11 @@ types:
           body: 
             application/json:
               description: Token expirado
-      securedBy: [JWT]
+      securedBy: JWT
       
 /agents:
   get:
+    description: Return list agents
     responses: 
       200:
         body:
@@ -177,8 +178,9 @@ types:
       404:
         body:
           type: Response
-    securedBy: [JWT]
+    securedBy: JWT
   post:
+    description: New Agent
     body: 
       application/json:
     responses: 
@@ -188,9 +190,10 @@ types:
       401:
         body:
           type: Response
-    securedBy: [JWT]
+    securedBy: JWT
 
   /{id}:
+    description: Agent detail
     get:
       responses: 
         200:
@@ -202,7 +205,7 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     put:
       responses:
         200:
@@ -214,8 +217,9 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     delete:
+      description: Delete Agent
       responses:
         200:
           body:
@@ -226,10 +230,11 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
       
   /{id}/events:
     get:
+      description: Events list
       responses:
         200:
           body:
@@ -240,7 +245,7 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
       
     post:
       body: 
@@ -254,7 +259,7 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
       
     put:
       description: Update Event
@@ -276,7 +281,7 @@ types:
         400:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
       
     delete:
       description: Delete Event
@@ -301,10 +306,11 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
 
 /groups:
   get:
+    description: Group list
     responses:
       200:
         body:
@@ -312,7 +318,7 @@ types:
       401:
         body:
           type: Response
-    securedBy: [JWT]
+    securedBy: JWT
     
   post:
     body:
@@ -324,9 +330,10 @@ types:
       401:
         body:
           type: Response
-    securedBy: [JWT]
+    securedBy: JWT
   /{id}:
     get:
+      description: Group detail
       responses:
         200:
           body:
@@ -337,8 +344,9 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     put:
+      description: Edit Group
       body:
         type: Group
       responses:
@@ -348,8 +356,9 @@ types:
         401:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     delete:
+      description: Delete Group
       responses:
         204:
           body:
@@ -357,15 +366,17 @@ types:
         400:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
 /users:
   get:
+    description: User list
     responses:
       200:
         body:
           type: User[]
-    securedBy: [JWT]
+    securedBy: JWT
   post:
+    description: Create User
     body:
       application/json:
         properties:
@@ -379,9 +390,10 @@ types:
       404:
         body:
           type: Response
-    securedBy: [JWT]
+    securedBy: JWT
   /{id}:
     get:
+      description: User detail
       responses:
         200:
           body:
@@ -392,8 +404,9 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     put:
+      description: Edit User
       body:
         type: User
       responses:
@@ -406,7 +419,7 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
     delete:
       responses:
         200:
@@ -418,5 +431,5 @@ types:
         404:
           body:
             type: Response
-      securedBy: [JWT]
+      securedBy: JWT
 '''
